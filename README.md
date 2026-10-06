@@ -1,36 +1,200 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎓 Acadexa
 
-## Getting Started
+### Your Complete Academic Ecosystem
 
-First, run the development server:
+Acadexa is a modern **Academic Management System / College Learning Management Platform** designed to bring students, teachers, and administrators together in one centralized platform.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+It provides tools for managing students, courses, attendance, marks, assignments, submissions, fees, enrollments, and academic performance.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 👨‍🎓 Student Portal
 
-## Learn More
+Students can:
 
-To learn more about Next.js, take a look at the following resources:
+- View their academic dashboard
+- View and manage their profile
+- View enrolled courses
+- View attendance
+- View subject-wise marks
+- View grades and academic performance
+- View fee details and payment status
+- View assignments
+- Submit assignments
+- Upload assignment files
+- View assignment grades and teacher feedback
+- View academic calendar
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 👨‍🏫 Teacher Portal
 
-## Deploy on Vercel
+Teachers can:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Access a dedicated teacher dashboard
+- View student information
+- Search students
+- Mark student attendance
+- Update attendance records
+- Enter and update student marks
+- Create assignments
+- Set assignment deadlines
+- Set maximum marks
+- View student submissions
+- Evaluate assignments
+- Give marks and feedback
+- Monitor academic performance
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+### 🛠️ Admin Portal
+
+Administrators can manage the academic system and have access to administrative features including:
+
+- Student management
+- Teacher management
+- Course management
+- Attendance management
+- Marks management
+- Assignment management
+- Enrollment management
+- Fee management
+- Academic records
+
+---
+
+## 📚 Academic Management
+
+Acadexa provides centralized management for:
+
+| Module | Description |
+|---|---|
+| Students | Student records and academic information |
+| Teachers | Faculty information and profiles |
+| Courses | Course and subject management |
+| Enrollments | Student-course enrollment |
+| Attendance | Daily attendance tracking |
+| Marks | Subject-wise marks |
+| Grades | Academic performance |
+| Assignments | Assignment creation and submission |
+| Fees | Fee records and payment tracking |
+| Calendar | Academic events and deadlines |
+| Profiles | Student and teacher information |
+
+---
+
+## 🔐 Role-Based Access
+
+Acadexa uses role-based access control.
+
+### Student
+
+Students can access their own:
+
+- Courses
+- Attendance
+- Marks
+- Grades
+- Assignments
+- Fees
+- Profile
+
+### Teacher
+
+Teachers can:
+
+- Manage attendance
+- Manage marks
+- Create assignments
+- Evaluate submissions
+- View students
+
+### Admin
+
+Administrators have broader access to manage the academic system.
+
+---
+
+## 🧑‍💻 Technology Stack
+
+### Frontend
+
+- **Next.js**
+- **React**
+- **TypeScript**
+- **Tailwind CSS**
+
+### Backend
+
+- **Next.js API Routes**
+- **Prisma ORM**
+- **SQLite**
+- **JWT Authentication**
+
+### Authentication & Security
+
+- JWT-based authentication
+- HTTP-only authentication cookies
+- Role-based authorization
+- Password hashing with `bcryptjs`
+
+### Database
+
+- SQLite
+- Prisma ORM
+- Prisma migrations
+
+---
+
+## 📁 Project Structure
+
+```text
+acadexa/
+│
+├── app/
+│   ├── api/
+│   │   ├── assignments/
+│   │   ├── auth/
+│   │   ├── courses/
+│   │   ├── student/
+│   │   └── teacher/
+│   │
+│   ├── assignments/
+│   ├── attendance/
+│   ├── courses/
+│   ├── dashboard/
+│   ├── fees/
+│   ├── grades/
+│   ├── login/
+│   ├── marks/
+│   ├── my-courses/
+│   ├── profile/
+│   ├── register/
+│   ├── students/
+│   ├── teacher/
+│   │   ├── assignments/
+│   │   ├── attendance/
+│   │   ├── marks/
+│   │   └── students/
+│   │
+│   ├── components/
+│   ├── globals.css
+│   └── page.tsx
+│
+├── lib/
+│   ├── auth.ts
+│   └── prisma.ts
+│
+├── prisma/
+│   ├── migrations/
+│   └── schema.prisma
+│
+├── public/
+│   └── uploads/
+│
+├── prisma.config.ts
+├── package.json
+├── tsconfig.json
+└── README.md
