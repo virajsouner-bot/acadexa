@@ -1,0 +1,147 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Student {
+  id          Int      @id @default(autoincrement())
+  fullName    String
+  email       String   @unique
+  phone       String?
+  dateOfBirth String?
+  gender      String?
+  rollNumber  String   @unique
+  course      String
+  department  String
+  semester    String
+  address     String?
+  createdAt   DateTime @default(now())
+
+  attendance  Attendance[]
+  fees        Fee[]
+  marks       Mark[]
+  submissions Submission[]
+  user        User?
+  enrollments Enrollment[]
+}
+
+model Attendance {
+  id        Int      @id @default(autoincrement())
+  date      String
+  status    String
+  studentId Int
+
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, date])
+}
+
+model Course {
+  id          Int      @id @default(autoincrement())
+  name        String
+  code        String   @unique
+  department  String
+  credits     Int
+  createdAt   DateTime @default(now())
+
+  enrollments Enrollment[]
+  assignments Assignment[]
+}
+
+model Enrollment {
+  id        Int      @id @default(autoincrement())
+  studentId Int
+  courseId  Int
+  createdAt DateTime @default(now())
+
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, courseId])
+}
+
+model Fee {
+  id          Int      @id @default(autoincrement())
+  amount      Float
+  paidAmount  Float    @default(0)
+  dueDate     String
+  status      String   @default("Pending")
+  studentId   Int
+
+  student     Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime  @default(now())
+}
+
+model Mark {
+  id          Int      @id @default(autoincrement())
+  subject     String
+  marks       Float
+  maxMarks    Float    @default(100)
+  studentId   Int
+
+  student     Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime  @default(now())
+
+  @@unique([studentId, subject])
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  role      String   @default("STUDENT")
+
+  studentId Int?     @unique
+
+  student   Student? @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+}
+
+model Assignment {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  dueDate     DateTime
+  maxMarks    Float    @default(100)
+  courseId    Int
+  createdAt   DateTime @default(now())
+
+  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  submissions Submission[]
+}
+
+model Submission {
+  id           Int      @id @default(autoincrement())
+  assignmentId Int
+  studentId    Int
+  fileName     String
+  filePath     String?
+  submittedAt  DateTime @default(now())
+  status       String   @default("Submitted")
+  marks        Float?
+  feedback     String?
+
+  assignment Assignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+  student    Student    @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([assignmentId, studentId])
+}
+
+model Teacher {
+  id          Int      @id @default(autoincrement())
+  fullName    String
+  email       String   @unique
+  phone       String?
+  department  String
+  designation String?
+  employeeId  String   @unique
+  createdAt   DateTime @default(now())
+}

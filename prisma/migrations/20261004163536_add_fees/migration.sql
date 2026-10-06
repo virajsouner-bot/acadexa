@@ -1,0 +1,11 @@
+-- CreateTable
+CREATE TABLE "Fee" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "amount" REAL NOT NULL,
+    "paidAmount" REAL NOT NULL DEFAULT 0,
+    "dueDate" TEXT NOT NULL,
+    "status" TEXT NOT NULL DEFAULT 'Pending',
+    "studentId" INTEGER NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT "Fee_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "Student" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+);
